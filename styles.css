@@ -116,9 +116,22 @@ h1{font-size:clamp(30px,5vw,44px); font-weight:800; letter-spacing:-.02em; margi
 .contact-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
+    column-gap:12px;
+    row-gap:22px;
+}
 
-    column-gap:12px;   /* space between Email and LinkedIn */
-    row-gap:22px;      /* space between Email/GitHub rows */
+.full-width{
+    grid-column:1 / -1;
+}
+
+@media (max-width:560px){
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full-width{
+        grid-column:auto;
+    }
 }
 @media (max-width:560px){.contact-grid{grid-template-columns:1fr;}}
 .contact-card{border:1px solid var(--border); border-radius:8px; padding:16px 18px; text-decoration:none; display:flex; flex-direction:column; gap:3px; background:var(--panel); transition:border-color .15s;}

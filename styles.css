@@ -91,6 +91,14 @@ h1{font-size:clamp(30px,5vw,44px); font-weight:800; letter-spacing:-.02em; margi
 .placeholder-card .p-desc{color:var(--muted); font-size:13.5px; max-width:420px; margin:0 auto;}
 
 /* certs */
+.cert-section{
+    margin:2rem 0 1rem;
+    font-family:'JetBrains Mono', monospace;
+    font-size:.78rem;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--muted);
+}
 .cert-list{display:grid; gap:10px;}
 .cert{display:flex; justify-content:space-between; align-items:center; gap:16px; background:var(--panel); border:1px solid var(--border); border-radius:8px; padding:14px 18px; flex-wrap:wrap;}
 .cert-name{font-weight:600; font-size:14px;}

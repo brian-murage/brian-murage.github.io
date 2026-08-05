@@ -814,7 +814,7 @@ h1{
 
     font-family:var(--mono);
     font-size:10.5px;
-    color:var(--muted-2);
+    color:var(--text);
 
     text-transform:uppercase;
     letter-spacing:.06em;
@@ -823,7 +823,7 @@ h1{
 
 .contact-value{
 
-    color:var(--text);
+    color:var(--muted);
     font-size:14px;
     font-weight:700;
 

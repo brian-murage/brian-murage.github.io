@@ -169,13 +169,26 @@ strong, b{
 
 @media (max-width:760px){
 
+    .topbar-inner{
+
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+
+    }
+
     .topnav{
 
-        display:none;
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+
+        width:100%;
 
     }
 
 }
+
 /* =========================================================
    HERO SECTION
    ========================================================= */

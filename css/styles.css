@@ -504,8 +504,10 @@ h1{
 
     margin:14px 0 5px;
 
+    
     font-family:var(--mono);
     font-size:10.5px;
+    font-weight:bold;
     color:var(--muted);
 
     text-transform:uppercase;

@@ -687,6 +687,22 @@ h1{
   .writeup h2 {
     margin-top: 2rem;
   }
+.writeup-image {
+  width: 100%;
+  max-width: 900px;      
+  aspect-ratio: 16 / 9;  
+  margin: 1.5rem auto;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--panel); 
+}
+
+.writeup-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  
+  display: block;
+}
 
 /* =========================================================
    CERTIFICATIONS & EDUCATION

@@ -678,7 +678,7 @@ h1{
 }
 
 .writeup-header h1 {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 800;
     color: var(--text);
     letter-spacing: -.01em;
@@ -688,7 +688,7 @@ h1{
 
 .writeup-meta p {
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 11px;
     color: var(--muted);
     margin: 3px 0;
 }
@@ -702,7 +702,7 @@ h1{
     font-family: var(--mono);
     font-size: 10.5px;
     font-weight: 700;
-    color: var(--text);
+    color: var(--muted);  
     text-transform: uppercase;
     letter-spacing: .06em;
 }
@@ -712,7 +712,7 @@ h1{
 }
 
 .writeup p {
-    font-size: 13.8px;
+    font-size: 12px;
     color: var(--muted);
     margin-bottom: 10px;
 }
@@ -725,7 +725,7 @@ h1{
 }
 
 .writeup li {
-    font-size: 13.8px;
+    font-size: 12px;
     color: var(--muted);
     line-height: 1.6;
 }

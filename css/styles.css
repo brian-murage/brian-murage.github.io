@@ -737,6 +737,7 @@ h1{
 .writeup-image {
     display: flex;
     justify-content: center;
+    align-items: center;
     background: var(--panel-2);
     border: 1px solid var(--border);
     border-radius: 8px;

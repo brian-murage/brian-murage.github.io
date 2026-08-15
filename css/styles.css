@@ -1015,16 +1015,6 @@ footer a:hover{
    RESPONSIVE DESIGN
    ========================================================= */
 
-@media (max-width:760px){
-
-    .topnav{
-
-        display:none;
-
-    }
-
-}
-
 @media (max-width:560px){
 
     .contact-grid{

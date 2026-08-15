@@ -750,6 +750,7 @@ h1{
     max-height: 420px;
     width: auto;
     height: auto;
+    min-width: 0;
     display: block;
     border-radius: 4px;
     image-rendering: -webkit-optimize-contrast;

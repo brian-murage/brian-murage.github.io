@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writeups | Brian King'ori Murage</title>
+<meta name="description" content="Technical write-ups documenting networking labs, enterprise infrastructure projects, troubleshooting case studies, and lessons learned throughout my professional and learning journey.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html"><b>Brian King'ori Murage</b></a>
+    <nav class="topnav">
+      <a href="../index.html">home</a>
+      <a href="about.html">about</a>
+      <a href="skills.html">skills</a>
+      <a href="projects.html">projects</a>
+      <a href="writeups.html" class="active">writeups</a>
+      <a href="certifications.html">certifications</a>
+      <a href="cv.html">cv</a>
+      <a href="contact.html">contact</a>
+    </nav>
+  </div>
+</div>
+<div class="wrap">
+  <div class="page">
+    <div class="sec-head">
+      <span class="sec-title">Writeups</span>
+    </div>
+
+    <div class="writeup-tabs" role="tablist" aria-label="Portfolio writeups">
+      <button class="writeup-tab active" id="tab-dr" role="tab" aria-selected="true" aria-controls="panel-dr" onclick="showWriteup('dr')">
+        Disaster Recovery: Backup &amp; Connectivity
+      </button>
+      <button class="writeup-tab" id="tab-mikrotik" role="tab" aria-selected="false" aria-controls="panel-mikrotik" onclick="showWriteup('mikrotik')">
+        MikroTik: Isolated Internet Access
+      </button>
+    </div>
+
+    <!-- ============ WRITEUP 1: DR ============ -->
+    <article class="writeup" id="panel-dr" role="tabpanel" aria-labelledby="tab-dr">
+      <header class="writeup-header">
+        <h1>Disaster Recovery: Backup Infrastructure &amp; Site-to-Site Connectivity</h1>
+        <div class="writeup-meta">
+          <p><strong>Environment:</strong> Enterprise Infrastructure</p>
+          <p><strong>Technologies:</strong> Veeam · Synology NAS · MikroTik RouterOS · Fibre P2P</p>
+          <p><strong>My Role:</strong> Infrastructure Support · Troubleshooting · Connectivity Validation</p>
+        </div>
+      </header>
+
+      <div class="writeup-image">
+        <img src="../assets/images/P2P.svg" alt="Disaster recovery site-to-site network diagram showing primary site Veeam backup and Synology replicating to DR site via MikroTik point-to-point link">
+      </div>
+
+      <h2>Overview</h2>
+      <p>The administration office's servers and files are backed up locally using Veeam, with an incremental backup copy replicated to Synology storage at a separate disaster recovery site.</p>
+      <p>The existing backup setup had begun experiencing repeated failures. Troubleshooting showed that the network connectivity between the primary and DR sites also needed to be addressed, so the backup path and the underlying site-to-site connectivity were rebuilt.</p>
+
+      <h2>The Problem</h2>
+      <p>The existing backup jobs were failing repeatedly. Troubleshooting was complicated by the fact that the configuration of the MikroTik router at the DR site could not be verified.</p>
+      <p>Rather than work around a configuration that could not be trusted, the decision was made to replace the router and rebuild the connectivity from the ground up.</p>
+
+      <h2>My Role</h2>
+      <p>The IT Manager led the Veeam configuration and overall implementation. I worked alongside him as a second technical resource, assisting with troubleshooting, testing, and validating the new environment.</p>
+      <p>My involvement included:</p>
+      <ul>
+        <li>Assisting with the deployment and configuration of the replacement MikroTik router at the DR site</li>
+        <li>Supporting the establishment and testing of the fibre point-to-point link between the primary and DR sites</li>
+        <li>Travelling to the DR site to perform connectivity tests from the secondary location</li>
+        <li>Testing connectivity from the DR site back to the primary site and to the local Synology storage</li>
+        <li>Assisting with troubleshooting when the DR Synology could not initially be reached from the primary site</li>
+        <li>Taking part in recovery testing with the IT Manager: restoring a test file and a full virtual machine together</li>
+        <li>Helping validate the final connectivity arrangement after the initial bidirectional testing was simplified to the required primary-to-DR path</li>
+      </ul>
+
+      <h2>Troubleshooting Approach</h2>
+      <p>Because the two sites were physically separated, troubleshooting required testing from both locations rather than relying solely on tests from the primary site.</p>
+      <p>When the DR Synology could not be reached from the primary site, I tested connectivity directly from the DR site. This helped narrow down whether the problem was within the DR site's local network, the router, the point-to-point link, or the Synology device itself.</p>
+      <p>This approach allowed us to troubleshoot the connectivity path systematically rather than assuming that every backup failure originated from Veeam.</p>
+
+      <h2>Result</h2>
+      <p>The rebuilt backup environment is now running reliably on its incremental schedule.</p>
+      <p>Recovery was also tested, and the IT Manager and I carried out the restores together. A test file was created, backed up, deleted, and restored from the previous day's backup. A full virtual machine was restored to a new location and checked against the live one. Both tests succeeded, confirming that the backup data could be restored and that the DR process worked beyond simply completing backup jobs.</p>
+
+      <h2>What I Learned</h2>
+      <p>This project reinforced the importance of troubleshooting across the entire infrastructure stack. A backup failure is not necessarily a backup-software problem; network connectivity, routing, and storage can all affect whether a backup can complete successfully.</p>
+      <p>A backup is only reliable once a restore has been tested. It also gave me practical experience troubleshooting connectivity between two physical sites and understanding how network infrastructure, storage, and backup systems depend on one another in a disaster recovery environment.</p>
+    </article>
+
+    <!-- ============ WRITEUP 2: MIKROTIK ============ -->
+    <article class="writeup" id="panel-mikrotik" role="tabpanel" aria-labelledby="tab-mikrotik" hidden>
+      <header class="writeup-header">
+        <h1>MikroTik Deployment: Isolated Internet Access for an Unserved Area</h1>
+        <div class="writeup-meta">
+          <p><strong>Environment:</strong> Enterprise Infrastructure</p>
+          <p><strong>Technologies:</strong> MikroTik RouterOS · WLAN · Firewall · Ethernet · Network Segmentation</p>
+          <p><strong>My Role:</strong> Router Configuration · Firewall Configuration · Network Deployment Support</p>
+        </div>
+      </header>
+
+      <div class="writeup-image">
+        <img src="../assets/images/WLAN.svg" alt="Network diagram showing MikroTik router providing isolated internet-only wireless access with restricted management from two authorized computers">
+      </div>
+
+      <h2>Overview</h2>
+      <p>A section of the organization did not have network or internet connectivity. As part of a team deployment, I contributed to extending connectivity to the area. The IT Manager tasked me with configuring a MikroTik router to provide wireless internet access, and I reported back once it was done.</p>
+      <p>A key requirement was that the new network provide internet access without providing access to the organization's internal network.</p>
+
+      <h2>The Problem</h2>
+      <p>The area had no existing network cabling or wireless coverage. The solution needed to provide reliable connectivity while keeping the new wireless network isolated from internal resources.</p>
+      <p>The requirements were to:</p>
+      <ul>
+        <li>Provide internet access to the area</li>
+        <li>Prevent connected devices from accessing the internal network</li>
+        <li>Allow only authorized personnel to manage the MikroTik device</li>
+      </ul>
+
+      <h2>My Role</h2>
+      <p>The physical deployment was a team effort involving the IT Manager, myself, and other team members. I contributed to the physical network installation and was specifically responsible for configuring the MikroTik router and its firewall rules.</p>
+      <p>My involvement included:</p>
+      <ul>
+        <li>Participating in the site assessment and selection of a suitable location for the new access point</li>
+        <li>Working with the team to run an Ethernet cable from the nearest network switch to the selected location</li>
+        <li>Configuring the MikroTik router from the ground up</li>
+        <li>Configuring the WAN interface to obtain internet connectivity from the existing network</li>
+        <li>Configuring the remaining interfaces for LAN connectivity</li>
+        <li>Configuring the WLAN, including the SSID and wireless password</li>
+        <li>Creating firewall rules to prevent wireless clients from accessing the internal network</li>
+        <li>Restricting administrative access to the MikroTik to two authorized computers using static IP addresses and firewall rules</li>
+        <li>Testing the setup from a laptop and a phone connected to the wireless network, trying to reach internal machines with ping and Remote Desktop</li>
+      </ul>
+
+      <h2>Network Segmentation</h2>
+      <p>The main security requirement was to ensure that the new wireless network could provide internet access without becoming another route into the organization's internal environment.</p>
+      <p>The MikroTik received its internet connection through the existing network, but traffic from wireless clients was restricted from reaching internal resources.</p>
+      <p>Administrative access was handled separately. Two authorized computers were assigned static IP addresses, and firewall rules were configured to allow management access only from those addresses.</p>
+      <p>This resulted in two distinct access requirements:</p>
+      <ul>
+        <li><strong>Wireless clients:</strong> Internet access only.</li>
+        <li><strong>Authorized administrators:</strong> Internet access plus management access to the MikroTik.</li>
+      </ul>
+
+      <h2>Result</h2>
+      <p>The previously unserved area gained reliable wireless internet connectivity.</p>
+      <p>In testing, every ping and Remote Desktop attempt from the wireless network to internal machines failed. Administrative access to the MikroTik was restricted to the two authorized management devices.</p>
+      <p>These tests covered two methods of access only. They checked the firewall rules but were not a full security test.</p>
+
+      <h2>What I Learned</h2>
+      <p>This project reinforced that deploying network connectivity involves more than simply making a device reachable.</p>
+      <p>The physical installation, router configuration, firewall rules, and access requirements all had to work together to provide connectivity without unnecessarily extending access to the internal network.</p>
+      <p>It gave me practical experience with MikroTik RouterOS, WLAN configuration, firewall rules, network segmentation, and access control, while also giving me experience working as part of a team on a physical network deployment.</p>
+    </article>
+
+  </div>
+      <footer>
+    <small>© 2026-Present Brian King'ori Murage</small><br>
+    <small>Built with HTML, CSS &amp; GitHub Pages</small><br>
+    <a href="https://github.com/brian-murage/brian-murage.github.io"
+       target="_blank"
+       rel="noopener">
+        View Source on GitHub
+    </a>
+</footer>
+</div>
+<script>
+  function showWriteup(id) {
+    var panels = document.querySelectorAll('.writeup[role="tabpanel"]');
+    var tabs = document.querySelectorAll('.writeup-tab');
+
+    panels.forEach(function (panel) {
+      panel.hidden = true;
+    });
+    tabs.forEach(function (tab) {
+      tab.classList.remove('active');
+      tab.setAttribute('aria-selected', 'false');
+    });
+
+    document.getElementById('panel-' + id).hidden = false;
+    var activeTab = document.getElementById('tab-' + id);
+    activeTab.classList.add('active');
+    activeTab.setAttribute('aria-selected', 'true');
+  }
+</script>
+</body>
+</html>
